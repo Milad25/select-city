@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <div>
+    <div>
+      <input class="origin" type="text" readonly />
+      <input class="destination" type="text" readonly />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -10,4 +15,11 @@ export default {
 </script>
 
 <style>
+.origin {
+
+}
+
+.destination {
+
+}
 </style>
