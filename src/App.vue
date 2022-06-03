@@ -174,12 +174,6 @@ input {
   display: inline-flex;
 }
 
-.origin {
-}
-
-.destination {
-}
-
 .suggestedOriginCities {
   height: 300px;
   overflow: auto;
@@ -205,9 +199,6 @@ input {
 
 .suggestedOriginCityItem > p {
   margin-right: 1rem;
-}
-
-.originInput {
 }
 
 .destinationInput {
