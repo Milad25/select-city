@@ -30,6 +30,7 @@
       <div class="destination">
         <input
           :disabled="origin === ''"
+          @change="destinationChangeHandler"
           @click="showDestinationsListHandler"
           v-model="destination"
           class="destinationInput"
@@ -94,15 +95,39 @@ export default {
     },
   },
 
+  watch: {
+    origin() {
+      this.listOfOrigins = cities.filter((item) => {
+        return (
+          item.pe_name.includes(this.origin) ||
+          item.en_name.toLowerCase().includes(this.origin.toLowerCase())
+        );
+      });
+    },
+
+    destination() {
+      const selectedCity = cities.filter(
+        (item) => item.pe_name === this.origin
+      );
+      const foundDestinations = Object.values(selectedCity[0].destinations);
+      const listOfDestinations = foundDestinations;
+
+      this.listOfDestinations = listOfDestinations.filter((item) => {
+        return (
+          item.pe_name.includes(this.destination) ||
+          item.en_name.toLowerCase().includes(this.destination.toLowerCase())
+        );
+      });
+    },
+  },
+
   methods: {
     originChangeHandler(e) {
       this.origin = e.target.value;
-      this.listOfOrigins = cities.filter((item) => {
-        return (
-          item.pe_name.includes(e.target.value) ||
-          item.en_name.toLowerCase().includes(e.target.value.toLowerCase())
-        );
-      });
+    },
+
+    destinationChangeHandler(e) {
+      this.destination = e.target.value;
     },
 
     showOriginsListHandler() {
