@@ -1,5 +1,11 @@
 <template>
   <div>
+    <!-- the overlay for closing the drop-down lists -->
+    <div
+      v-if="showOverlay"
+      @click="overlayClickHandler"
+      class="selectCityOverlay"
+    ></div>
     <div class="inputContainer">
       <div class="origin">
         <input
@@ -74,6 +80,7 @@ export default {
       showDestinationsList: false,
       listOfDestinations: undefined,
       listOfOrigins: undefined,
+      showOverlay: false,
     };
   },
 
@@ -122,6 +129,12 @@ export default {
   },
 
   methods: {
+    overlayClickHandler() {
+      this.showOriginsList = false;
+      this.showDestinationsList = false;
+      this.showOverlay = false;
+    },
+
     originChangeHandler(e) {
       this.origin = e.target.value;
     },
@@ -131,12 +144,14 @@ export default {
     },
 
     showOriginsListHandler() {
-      this.showOriginsList = !this.showOriginsList;
+      this.showOverlay = true;
+      this.showOriginsList = true;
       this.showDestinationsList = false;
     },
 
     showDestinationsListHandler() {
-      this.showDestinationsList = !this.showDestinationsList;
+      this.showOverlay = true;
+      this.showDestinationsList = true;
       this.showOriginsList = false;
     },
 
@@ -170,8 +185,24 @@ input {
   border-radius: 8px;
 }
 
+.selectCityOverlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 99;
+}
+
 .inputContainer {
   display: inline-flex;
+}
+
+.origin {
+  z-index: 100;
+}
+
+.destination {
+  z-index: 100;
 }
 
 .suggestedOriginCities {
