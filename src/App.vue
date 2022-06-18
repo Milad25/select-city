@@ -182,7 +182,7 @@ export default {
 input {
   border: 1px solid #ccc;
   padding: 0.5rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 3px;
 }
 
 .selectCityOverlay {
@@ -233,10 +233,17 @@ input {
 }
 
 .destinationInput {
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
+  min-height: 45px;
+  margin-right: 4px;
 }
 
 .disabledInput {
   cursor: not-allowed;
+  background-color: #eee;
+}
+
+.originInput {
+  min-height: 45px;
 }
 </style>
